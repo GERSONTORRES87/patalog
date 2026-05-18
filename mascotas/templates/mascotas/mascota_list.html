@@ -1,0 +1,34 @@
+{% extends 'mascotas/base.html' %}
+{% block titulo %}Mascotas{% endblock %}
+{% block contenido %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2><i class="bi bi-list-ul"></i> Todas las Mascotas</h2>
+    <a href="{% url 'mascotas:crear' %}" class="btn btn-primary"><i class="bi bi-plus"></i> Nueva Mascota</a>
+</div>
+
+<div class="row g-3">
+    {% for mascota in mascotas %}
+    <div class="col-md-4">
+        <div class="card h-100 p-3">
+            <div class="text-center mb-2" style="font-size:3rem">
+                {% if mascota.especie == 'perro' %}🐶{% else %}🐱{% endif %}
+            </div>
+            <h5 class="text-center">{{ mascota.nombre }}</h5>
+            <p class="text-center text-muted mb-1">{{ mascota.get_especie_display }}</p>
+            {% if mascota.raza %}<p class="text-center text-muted small mb-1">{{ mascota.raza }}</p>{% endif %}
+            <p class="text-center text-muted small">{{ mascota.vacunas.count }} vacuna(s)</p>
+            <div class="d-flex gap-2 mt-2">
+                <a href="{% url 'mascotas:detalle' mascota.pk %}" class="btn btn-outline-primary btn-sm flex-fill">Ver</a>
+                <a href="{% url 'mascotas:editar' mascota.pk %}" class="btn btn-outline-secondary btn-sm flex-fill">Editar</a>
+                <a href="{% url 'mascotas:eliminar' mascota.pk %}" class="btn btn-outline-danger btn-sm flex-fill">Eliminar</a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-12 text-center py-5">
+        <p class="text-muted">No hay mascotas registradas aún.</p>
+        <a href="{% url 'mascotas:crear' %}" class="btn btn-primary">Registrar primera mascota</a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

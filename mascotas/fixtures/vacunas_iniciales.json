@@ -1,0 +1,12 @@
+[
+  {"model": "mascotas.vacuna", "pk": 1, "fields": {"nombre": "Rabia", "descripcion": "Protege contra la rabia", "especie": "ambos", "frecuencia_meses": 12}},
+  {"model": "mascotas.vacuna", "pk": 2, "fields": {"nombre": "Sextuple", "descripcion": "Moquillo, hepatitis, parvovirus, parainfluenza, leptospira", "especie": "perro", "frecuencia_meses": 12}},
+  {"model": "mascotas.vacuna", "pk": 3, "fields": {"nombre": "Parvovirus", "descripcion": "Protege contra el parvovirus canino", "especie": "perro", "frecuencia_meses": 12}},
+  {"model": "mascotas.vacuna", "pk": 4, "fields": {"nombre": "Moquillo Canino", "descripcion": "Protege contra el distemper canino", "especie": "perro", "frecuencia_meses": 12}},
+  {"model": "mascotas.vacuna", "pk": 5, "fields": {"nombre": "Bordetella", "descripcion": "Tos de las perreras", "especie": "perro", "frecuencia_meses": 6}},
+  {"model": "mascotas.vacuna", "pk": 6, "fields": {"nombre": "Influenza Canina", "descripcion": "Gripe canina", "especie": "perro", "frecuencia_meses": 12}},
+  {"model": "mascotas.vacuna", "pk": 7, "fields": {"nombre": "Leptospira", "descripcion": "Protege contra leptospirosis", "especie": "perro", "frecuencia_meses": 12}},
+  {"model": "mascotas.vacuna", "pk": 8, "fields": {"nombre": "Triple Felina (FVRCP)", "descripcion": "Rinotraqueitis, calicivirus, panleucopenia", "especie": "gato", "frecuencia_meses": 36}},
+  {"model": "mascotas.vacuna", "pk": 9, "fields": {"nombre": "Leucemia Felina (FeLV)", "descripcion": "Virus de leucemia felina", "especie": "gato", "frecuencia_meses": 12}},
+  {"model": "mascotas.vacuna", "pk": 10, "fields": {"nombre": "Desparasitacion", "descripcion": "Control de parasitos intestinales", "especie": "ambos", "frecuencia_meses": 3}}
+]

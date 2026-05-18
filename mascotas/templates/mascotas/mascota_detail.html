@@ -1,0 +1,55 @@
+{% extends 'mascotas/base.html' %}
+{% block titulo %}{{ mascota.nombre }}{% endblock %}
+{% block contenido %}
+<div class="row">
+    <div class="col-md-4">
+        <div class="card p-4 text-center">
+            <div style="font-size:5rem">{% if mascota.especie == 'perro' %}🐶{% else %}🐱{% endif %}</div>
+            <h3>{{ mascota.nombre }}</h3>
+            <p class="text-muted">{{ mascota.get_especie_display }}</p>
+            {% if mascota.raza %}<p><strong>Raza:</strong> {{ mascota.raza }}</p>{% endif %}
+            {% if mascota.fecha_nacimiento %}<p><strong>Nacimiento:</strong> {{ mascota.fecha_nacimiento }}</p>{% endif %}
+            <div class="d-flex flex-column gap-2 mt-3">
+                <a href="{% url 'mascotas:agregar_vacuna' mascota.pk %}" class="btn btn-success"><i class="bi bi-plus"></i> Agregar Vacuna</a>
+                <a href="{% url 'mascotas:editar' mascota.pk %}" class="btn btn-outline-secondary"><i class="bi bi-pencil"></i> Editar</a>
+                <a href="{% url 'mascotas:eliminar' mascota.pk %}" class="btn btn-outline-danger"><i class="bi bi-trash"></i> Eliminar</a>
+                <a href="{% url 'mascotas:lista' %}" class="btn btn-outline-primary"><i class="bi bi-arrow-left"></i> Volver</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="card p-4">
+            <h5><i class="bi bi-capsule"></i> Historial de Vacunas ({{ mascota.vacunas.count }})</h5>
+            {% if mascota.vacunas.all %}
+            <table class="table table-hover mt-3">
+                <thead class="table-light">
+                    <tr>
+                        <th>Vacuna</th>
+                        <th>Fecha</th>
+                        <th>Próxima dosis</th>
+                        <th>Veterinario</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for reg in mascota.vacunas.all %}
+                    <tr>
+                        <td><strong>{{ reg.vacuna.nombre }}</strong></td>
+                        <td>{{ reg.fecha_aplicacion }}</td>
+                        <td>{% if reg.proxima_dosis %}<span class="badge bg-warning text-dark">{{ reg.proxima_dosis }}</span>{% else %}-{% endif %}</td>
+                        <td>{{ reg.veterinario|default:"-" }}</td>
+                        <td>
+                            <a href="{% url 'mascotas:eliminar_vacuna' reg.pk %}" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p class="text-muted mt-3">No hay vacunas registradas para esta mascota.</p>
+            <a href="{% url 'mascotas:agregar_vacuna' mascota.pk %}" class="btn btn-success btn-sm">Registrar primera vacuna</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
