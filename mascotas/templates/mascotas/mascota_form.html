@@ -22,4 +22,68 @@
         </div>
     </div>
 </div>
+
+<script>
+const razasPerro = [
+    ['', 'Selecciona una raza'],
+    ['Criollo', 'Criollo'],
+    ['Labrador', 'Labrador'],
+    ['Pastor Alemán', 'Pastor Alemán'],
+    ['Bulldog', 'Bulldog'],
+    ['Poodle', 'Poodle'],
+    ['Golden Retriever', 'Golden Retriever'],
+    ['Beagle', 'Beagle'],
+    ['Chihuahua', 'Chihuahua'],
+    ['Rottweiler', 'Rottweiler'],
+    ['Boxer', 'Boxer'],
+    ['Dálmata', 'Dálmata'],
+    ['Doberman', 'Doberman'],
+    ['Husky Siberiano', 'Husky Siberiano'],
+    ['Shih Tzu', 'Shih Tzu'],
+    ['Yorkshire Terrier', 'Yorkshire Terrier'],
+    ['Schnauzer', 'Schnauzer'],
+    ['Cocker Spaniel', 'Cocker Spaniel'],
+    ['French Bulldog', 'French Bulldog'],
+    ['Pitbull', 'Pitbull'],
+    ['Otro', 'Otro'],
+];
+
+const razasGato = [
+    ['', 'Selecciona una raza'],
+    ['Criollo', 'Criollo'],
+    ['Persa', 'Persa'],
+    ['Siamés', 'Siamés'],
+    ['Maine Coon', 'Maine Coon'],
+    ['Bengalí', 'Bengalí'],
+    ['Ragdoll', 'Ragdoll'],
+    ['Esfinge', 'Esfinge'],
+    ['Angora', 'Angora'],
+    ['Birmano', 'Birmano'],
+    ['Azul Ruso', 'Azul Ruso'],
+    ['Abisinio', 'Abisinio'],
+    ['Scotish Fold', 'Scotish Fold'],
+    ['British Shorthair', 'British Shorthair'],
+    ['Otro', 'Otro'],
+];
+
+const especieSelect = document.getElementById('id_especie');
+const razaSelect = document.getElementById('id_raza');
+
+function actualizarRazas(especie) {
+    razaSelect.innerHTML = '';
+    const razas = especie === 'perro' ? razasPerro : especie === 'gato' ? razasGato : [['', 'Primero selecciona la especie']];
+    razas.forEach(([valor, texto]) => {
+        const option = document.createElement('option');
+        option.value = valor;
+        option.textContent = texto;
+        razaSelect.appendChild(option);
+    });
+}
+
+especieSelect.addEventListener('change', function() {
+    actualizarRazas(this.value);
+});
+
+actualizarRazas(especieSelect.value);
+</script>
 {% endblock %}
